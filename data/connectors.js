@@ -2,9 +2,9 @@ import Sequelize from 'sequelize';
 import casual from 'casual';
 import _ from 'lodash';
 import Mongoose from 'mongoose';
+import rp from 'request-promise';
 
 // SQLit connector
-
 const db = new Sequelize('blog', null, null, {
   dialect: 'sqlite',
   storage: './blog.sqlite',
@@ -78,4 +78,14 @@ db.sync({ force: true }).then(() => {
   });
 });
 
-export { Author, Post, View };
+const FortuneCookie = {
+  getOne() {
+    return rp('http://fortunecookieapi.com/v1/cookie')
+      .then((res) => JSON.parse(res))
+      .then((res) => {
+        return res[0].fortune.message;
+      });
+  },
+};
+
+export { Author, Post, View, FortuneCookie };
