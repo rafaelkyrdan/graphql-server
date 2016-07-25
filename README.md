@@ -1,5 +1,5 @@
 # graphql-server
-GraphQL Server. Project for self-education
+GraphQL Server. Demo project.
 
 ## What's it?
 It is GraphQL server that uses a SQL, MongoDB and REST.
